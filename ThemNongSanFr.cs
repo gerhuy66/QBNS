@@ -178,7 +178,7 @@ namespace QBNS
 
             if (this.AGR_CODE.Equals(""))
             {
-                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price) VALUES('{0}','{1}','{2}','{3}'," + "@images" + ",'{4}','{5}','{6}')"
+                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price) VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'','{4}','{5}','{6}')"
                     , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),tbSoLuong.Text,cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text);
             }
             else

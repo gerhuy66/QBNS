@@ -21,23 +21,41 @@ namespace QBNS
         {
             InitializeComponent();
         }
+        private String _defaultshopID;
+
+        public String DefaultShopID
+        {
+            get { return _defaultshopID; }
+            set { _defaultshopID = value; }
+        }
 
         private void frNongSan_Load(object sender, EventArgs e)
         {
-            loadDTGridView();
+            loadDTGridView(_defaultshopID);
             this.Height = 768;
             this.Width = MdiParent.Width;
+            if (!_defaultshopID.Equals("admin"))
+            {
+                this.tbMaCH.Text = _defaultshopID;
+                this.tbMaCH.ReadOnly = true;
+                this.tbMaCH.BackColor = Color.DarkBlue;
+                this.tbMaCH.ForeColor = Color.White;
+            }
             //aditem
             //VIEW
             // dtGriview.RowTemplate.Height = 50;
            
         }
 
-        private void loadDTGridView()
+        private void loadDTGridView(String shopID)
         {
             try
             {
-                String sql = "Select CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code, ag.AGR_ID,ag.AGR_Name,ag.DESCRIP,ag.LOC_ID,ag.IMG From AGRICULTURAL ag ORDER BY(Code) ASC";
+                String sql;
+                if (shopID.Equals("admin"))
+                    sql = "Select CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code, ag.AGR_ID,ag.AGR_Name,ag.DESCRIP,ag.LOC_ID,ag.IMG From AGRICULTURAL ag ORDER BY(Code) ASC";
+                else
+                    sql = String.Format("Select CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code, ag.AGR_ID,ag.AGR_Name,ag.DESCRIP,ag.LOC_ID,ag.IMG From AGRICULTURAL ag  WHERE ag.Shop_ID = '{0}' ORDER BY(Code) ASC",shopID);
                 conn = new SqlConnection(connectionString);
                 conn.Open();
                 cmd = new SqlCommand(sql, conn);
@@ -86,8 +104,6 @@ namespace QBNS
                 conn.Close();
             }
         }
-
-       
         private Image byteArrToImg(byte[] byteArr)
         {
             MemoryStream ms = new MemoryStream();
@@ -132,8 +148,12 @@ namespace QBNS
                 cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Đã Xóa Nông Sản !");
-                loadDTGridView();
-            }catch(Exception err)
+                if(tbMaCH.Equals(""))
+                    loadDTGridView("");//load ALL
+                else
+                    loadDTGridView(tbMaCH.Text.Trim());
+            }
+            catch(Exception err)
             {
                 MessageBox.Show(err.Message);
             }
@@ -167,7 +187,10 @@ namespace QBNS
 
         private void btn_Refresh_Click(object sender, EventArgs e)//Click Refresh
         {
-            loadDTGridView();
+            if (tbMaCH.Equals(""))
+                loadDTGridView("");
+            else
+                loadDTGridView(tbMaCH.Text.Trim());
         }
 
         private void tsNongSan_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -178,6 +201,13 @@ namespace QBNS
         private void frNongSan_Scroll(object sender, ScrollEventArgs e)
         {
           
+        }
+
+        private void tbMaCH_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = new TextBox();
+            tb = (TextBox)sender;
+            loadDTGridView(tb.Text.Trim());
         }
     }
 }

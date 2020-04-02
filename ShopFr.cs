@@ -13,8 +13,8 @@ namespace QBNS
 {
     public partial class ShopFr : Form
     {
-        private String owner_ID="F0";
-        private String shop_ID = "s01";
+        private String owner_ID="";
+        private String shop_ID = "";
 
         SqlConnection conn;
         SqlCommand cmd;

@@ -32,11 +32,11 @@
             this.lbNameAG = new System.Windows.Forms.Label();
             this.pmDES = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.richTB = new System.Windows.Forms.RichTextBox();
-            this.lbSoLuong = new System.Windows.Forms.Label();
-            this.lbDonGia = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lbDVT = new System.Windows.Forms.Label();
+            this.lbDonGia = new System.Windows.Forms.Label();
+            this.lbSoLuong = new System.Windows.Forms.Label();
+            this.richTB = new System.Windows.Forms.RichTextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.agrPIC)).BeginInit();
             this.pmDES.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -44,9 +44,9 @@
             // 
             // agrPIC
             // 
-            this.agrPIC.Location = new System.Drawing.Point(4, 4);
+            this.agrPIC.Location = new System.Drawing.Point(14, 19);
             this.agrPIC.Name = "agrPIC";
-            this.agrPIC.Size = new System.Drawing.Size(191, 156);
+            this.agrPIC.Size = new System.Drawing.Size(200, 150);
             this.agrPIC.TabIndex = 0;
             this.agrPIC.TabStop = false;
             // 
@@ -85,24 +85,15 @@
             this.panel1.TabIndex = 4;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // richTB
+            // lbDVT
             // 
-            this.richTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.richTB.Location = new System.Drawing.Point(7, 27);
-            this.richTB.Name = "richTB";
-            this.richTB.Size = new System.Drawing.Size(282, 64);
-            this.richTB.TabIndex = 4;
-            this.richTB.Text = "";
-            // 
-            // lbSoLuong
-            // 
-            this.lbSoLuong.AutoSize = true;
-            this.lbSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSoLuong.Location = new System.Drawing.Point(15, 106);
-            this.lbSoLuong.Name = "lbSoLuong";
-            this.lbSoLuong.Size = new System.Drawing.Size(82, 20);
-            this.lbSoLuong.TabIndex = 5;
-            this.lbSoLuong.Text = "Số Lượng:";
+            this.lbDVT.AutoSize = true;
+            this.lbDVT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDVT.Location = new System.Drawing.Point(151, 106);
+            this.lbDVT.Name = "lbDVT";
+            this.lbDVT.Size = new System.Drawing.Size(95, 20);
+            this.lbDVT.TabIndex = 7;
+            this.lbDVT.Text = "Đơn Vị Tính:";
             // 
             // lbDonGia
             // 
@@ -114,15 +105,24 @@
             this.lbDonGia.TabIndex = 6;
             this.lbDonGia.Text = "Đơn Giá:";
             // 
-            // lbDVT
+            // lbSoLuong
             // 
-            this.lbDVT.AutoSize = true;
-            this.lbDVT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDVT.Location = new System.Drawing.Point(151, 106);
-            this.lbDVT.Name = "lbDVT";
-            this.lbDVT.Size = new System.Drawing.Size(95, 20);
-            this.lbDVT.TabIndex = 7;
-            this.lbDVT.Text = "Đơn Vị Tính:";
+            this.lbSoLuong.AutoSize = true;
+            this.lbSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSoLuong.Location = new System.Drawing.Point(15, 106);
+            this.lbSoLuong.Name = "lbSoLuong";
+            this.lbSoLuong.Size = new System.Drawing.Size(82, 20);
+            this.lbSoLuong.TabIndex = 5;
+            this.lbSoLuong.Text = "Số Lượng:";
+            // 
+            // richTB
+            // 
+            this.richTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.richTB.Location = new System.Drawing.Point(7, 27);
+            this.richTB.Name = "richTB";
+            this.richTB.Size = new System.Drawing.Size(282, 64);
+            this.richTB.TabIndex = 4;
+            this.richTB.Text = "";
             // 
             // AgrItem
             // 

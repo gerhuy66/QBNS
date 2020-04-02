@@ -7,15 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace QBNS
 {
     public partial class MainForm : Form
     {
+   
         public MainForm()
         {
             InitializeComponent();
         }
+        private String _logIn_User = "";
+
+        public String LogInUser
+        {
+            get { return _logIn_User; }
+            set { _logIn_User = value; }
+        }
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -65,6 +75,8 @@ namespace QBNS
                 ShopFr shopfr = new ShopFr();
                 shopfr.MdiParent = this;
                 shopfr.Name = "frShop";
+                shopfr.setOwnerID(getFarmerID(_logIn_User.Trim()));
+                shopfr.setShopID(gerShopID(getFarmerID(_logIn_User.Trim())));
                 shopfr.FormBorderStyle = FormBorderStyle.None;
                 shopfr.Dock = DockStyle.Fill;
                 shopfr.Width = this.Width - 20;
@@ -72,6 +84,69 @@ namespace QBNS
                 shopfr.Show();
             }
         }
+        private String gerShopID(String username)
+        {
+            String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+            Properties.Settings.Default.ServerName, Properties.Settings.Default.DBname, Properties.Settings.Default.userName, Properties.Settings.Default.passWord);
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            String sql = "SELECT Shop_ID FROM SHOP WHERE owner_ID = '" + username.Trim() + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            try
+            {
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return dr.GetString(0);
+                }
+                dr.Close();
+
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show(excep.Message);
+            }
+            finally
+            {
+                cmd.Clone();
+                con.Close();
+            }
+            return "";
+        }
+        private String getFarmerID(String username)
+        {
+            String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+            Properties.Settings.Default.ServerName, Properties.Settings.Default.DBname, Properties.Settings.Default.userName, Properties.Settings.Default.passWord);
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            String sql = "SELECT Farmer_ID FROM ACCOUNT WHERE username = '"+ username.Trim() + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+           
+            try
+            {
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return dr.GetString(0);
+                }
+                dr.Close();
+              
+            }
+            catch(Exception excep)
+            {
+                MessageBox.Show(excep.Message);
+            }
+            finally
+            {
+                cmd.Clone();
+                con.Close();
+            }
+            return "";
+        }
+
         private void nongSanItem_Click(object sender, EventArgs e)//CLICK NONG SAN
         {
             Boolean isopen=false;
@@ -92,6 +167,7 @@ namespace QBNS
                 //frnongsan.StartPosition = FormStartPosition.CenterScreen;
                 frnongsan.FormBorderStyle = FormBorderStyle.None;
                 frnongsan.ControlBox = false;
+                frnongsan.DefaultShopID = gerShopID(getFarmerID(LogInUser.Trim()));
                 frnongsan.Show();
             }
         }
@@ -110,13 +186,6 @@ namespace QBNS
             Application.Exit();
             
         }
-
-        private void toolStripMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-    
-        }
-
-     
 
         private void toolStripLabel1_MouseHover(object sender, EventArgs e)
         {

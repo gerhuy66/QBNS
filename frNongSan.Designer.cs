@@ -33,14 +33,16 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dtGridView = new System.Windows.Forms.DataGridView();
             this.pnTitle = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbMaCH = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_Refresh = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbDelete = new System.Windows.Forms.TextBox();
             this.btnAddAGR = new System.Windows.Forms.Button();
             this.btnDelAGR = new System.Windows.Forms.Button();
             this.btnUpDate = new System.Windows.Forms.Button();
-            this.btn_Refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridView)).BeginInit();
             this.pnTitle.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,6 +81,8 @@
             // pnTitle
             // 
             this.pnTitle.BackColor = System.Drawing.Color.DarkBlue;
+            this.pnTitle.Controls.Add(this.label3);
+            this.pnTitle.Controls.Add(this.tbMaCH);
             this.pnTitle.Controls.Add(this.label1);
             this.pnTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnTitle.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -87,6 +91,25 @@
             this.pnTitle.Size = new System.Drawing.Size(874, 53);
             this.pnTitle.TabIndex = 3;
             this.pnTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.pnTitle_Paint);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(600, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(162, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Mã Cửa Hàng:";
+            // 
+            // tbMaCH
+            // 
+            this.tbMaCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMaCH.Location = new System.Drawing.Point(768, 11);
+            this.tbMaCH.Name = "tbMaCH";
+            this.tbMaCH.Size = new System.Drawing.Size(103, 29);
+            this.tbMaCH.TabIndex = 7;
+            this.tbMaCH.TextChanged += new System.EventHandler(this.tbMaCH_TextChanged);
             // 
             // label1
             // 
@@ -100,6 +123,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel2.Controls.Add(this.btn_Refresh);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.tbDelete);
             this.panel2.Controls.Add(this.btnAddAGR);
@@ -109,6 +133,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(372, 341);
             this.panel2.TabIndex = 4;
+            // 
+            // btn_Refresh
+            // 
+            this.btn_Refresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_Refresh.Location = new System.Drawing.Point(8, 299);
+            this.btn_Refresh.Name = "btn_Refresh";
+            this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_Refresh.TabIndex = 5;
+            this.btn_Refresh.Text = "Cập Nhật";
+            this.btn_Refresh.UseVisualStyleBackColor = false;
+            this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
             // 
             // label2
             // 
@@ -161,23 +196,11 @@
             this.btnUpDate.UseVisualStyleBackColor = true;
             this.btnUpDate.Click += new System.EventHandler(this.btnUpDate_Click);
             // 
-            // btn_Refresh
-            // 
-            this.btn_Refresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btn_Refresh.Location = new System.Drawing.Point(799, 62);
-            this.btn_Refresh.Name = "btn_Refresh";
-            this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
-            this.btn_Refresh.TabIndex = 5;
-            this.btn_Refresh.Text = "Cập Nhật";
-            this.btn_Refresh.UseVisualStyleBackColor = false;
-            this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
-            // 
             // frNongSan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 500);
-            this.Controls.Add(this.btn_Refresh);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnTitle);
             this.Controls.Add(this.dtGridView);
@@ -211,5 +234,7 @@
         private System.Windows.Forms.Button btnUpDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_Refresh;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbMaCH;
     }
 }

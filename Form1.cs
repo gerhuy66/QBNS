@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace QBNS
 {
     public partial class Form1 : Form
@@ -23,14 +23,13 @@ namespace QBNS
             
             
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDangNhap_Click(object sender, EventArgs e)
         {
             MainForm mf = new MainForm();
+            mf.LogInUser = tbTK.Text;
             mf.Show();
             this.Hide();
+            
         }
-
-        
     }
 }
