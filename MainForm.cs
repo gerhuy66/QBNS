@@ -20,10 +20,10 @@ namespace QBNS
         private void MainForm_Load(object sender, EventArgs e)
         {
             //setting mainform
-            this.TopMost = true;
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.TopMost = true;
+            //this.FormBorderStyle = FormBorderStyle.None;
 
-            this.WindowState = FormWindowState.Maximized;
+           // this.WindowState = FormWindowState.Maximized;
            
             //add item to tool strip menu
             //nong san
@@ -50,18 +50,50 @@ namespace QBNS
         }
         private void shopItem_Click(object sender, EventArgs e)//CLICK SHOP
         {
-            ToolStripMenuItem clickedItem = sender as ToolStripMenuItem;
-            MessageBox.Show(clickedItem.Text);
+            Boolean isopen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "frShop")
+                {
+                    isopen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+            if (!isopen)
+            {
+                ShopFr shopfr = new ShopFr();
+                shopfr.MdiParent = this;
+                shopfr.Name = "frShop";
+                shopfr.FormBorderStyle = FormBorderStyle.None;
+                shopfr.Dock = DockStyle.Fill;
+                shopfr.Width = this.Width - 20;
+                shopfr.Height = this.Height - 80;
+                shopfr.Show();
+            }
         }
         private void nongSanItem_Click(object sender, EventArgs e)//CLICK NONG SAN
         {
-            frNongSan frnongsan = new frNongSan();
-            frnongsan.MdiParent = this;
-            frnongsan.FormBorderStyle = FormBorderStyle.None;
-            frnongsan.Height = this.Height;
-            frnongsan.Width = this.Width;
-            frnongsan.ControlBox = false;
-            frnongsan.Show();
+            Boolean isopen=false;
+            foreach(Form f in Application.OpenForms)
+            {
+                if(f.Name == "frnongsan")
+                {
+                    isopen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+            if (!isopen) { 
+                frNongSan frnongsan = new frNongSan();
+                frnongsan.Name = "frnongsan";
+                frnongsan.MdiParent = this;
+                frnongsan.Dock = DockStyle.Fill;
+                //frnongsan.StartPosition = FormStartPosition.CenterScreen;
+                frnongsan.FormBorderStyle = FormBorderStyle.None;
+                frnongsan.ControlBox = false;
+                frnongsan.Show();
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -81,7 +113,7 @@ namespace QBNS
 
         private void toolStripMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            
+    
         }
 
      
