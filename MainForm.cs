@@ -46,10 +46,39 @@ namespace QBNS
             shopItem.Name = "shopItem";
             toolStripMenu.Items.Add(shopItem);
             shopItem.Click += shopItem_Click;
+            //Thuong Lai
+            ToolStripMenuItem thiTruongItem = new ToolStripMenuItem("Thị Trường");
+            thiTruongItem.Name = "thiTruongItem";
+            toolStripMenu.Items.Add(thiTruongItem);
+            thiTruongItem.Click += thiTruongItem_Click;
             //exit
             ToolStripMenuItem exit = new ToolStripMenuItem("Thoát");
             toolStripMenu.Items.Add(exit);
             exit.Click += Exit_Click;
+        }
+        private void thiTruongItem_Click(object sender, EventArgs e)//click thi truong
+        {
+            Boolean isopen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "thiTruongItem")
+                {
+                    isopen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+            if (!isopen)
+            {
+                ThuongLaiFr thuongLaiFr = new ThuongLaiFr();
+                thuongLaiFr.MdiParent = this;
+                thuongLaiFr.Name = "ThuongLaiFr";
+                thuongLaiFr.FormBorderStyle = FormBorderStyle.None;
+                thuongLaiFr.Dock = DockStyle.Fill;
+                thuongLaiFr.Width = this.Width - 20;
+                thuongLaiFr.Height = this.Height - 80;
+                thuongLaiFr.Show();
+            }
         }
         private void Exit_Click(object sender, EventArgs e)//Click Exit
         {
@@ -194,6 +223,11 @@ namespace QBNS
         }
 
         private void toolStripLabel1_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

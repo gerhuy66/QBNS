@@ -121,6 +121,7 @@ namespace QBNS
                     agrList[i].Amount = ds.Tables[0].Rows[i]["amount"].ToString().Trim();
                     agrList[i].Price = ds.Tables[0].Rows[i]["price"].ToString().Trim();
                     agrList[i].Unit = ds.Tables[0].Rows[i]["unit"].ToString().Trim();
+                    agrList[i].Instance = this.MdiParent;
                     Byte[] data = new Byte[0];
                     data = (byte[])ds.Tables[0].Rows[i]["IMG"];
                     MemoryStream ms = new MemoryStream(data);

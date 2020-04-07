@@ -71,6 +71,7 @@
             this.cbRemember.TabIndex = 13;
             this.cbRemember.Text = "Nhớ Mật Khẩu ?";
             this.cbRemember.UseVisualStyleBackColor = true;
+            this.cbRemember.CheckedChanged += new System.EventHandler(this.cbRemember_CheckedChanged);
             // 
             // tbTK
             // 

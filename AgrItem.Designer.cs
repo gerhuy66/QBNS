@@ -37,6 +37,7 @@
             this.lbSoLuong = new System.Windows.Forms.Label();
             this.richTB = new System.Windows.Forms.RichTextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.agrPIC)).BeginInit();
             this.pmDES.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lbDVT);
             this.panel1.Controls.Add(this.lbDonGia);
             this.panel1.Controls.Add(this.lbSoLuong);
@@ -124,6 +126,17 @@
             this.richTB.TabIndex = 4;
             this.richTB.Text = "";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button1.Location = new System.Drawing.Point(289, 106);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Chi tiết";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AgrItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,5 +166,6 @@
         private System.Windows.Forms.Label lbDonGia;
         private System.Windows.Forms.Label lbSoLuong;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button1;
     }
 }

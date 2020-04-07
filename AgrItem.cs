@@ -30,6 +30,13 @@ namespace QBNS
         private String _amount;
         private String _price;
         private String _unit;
+        private static System.Windows.Forms.Form _instance;
+
+        public System.Windows.Forms.Form Instance
+        {
+            get { return _instance; }
+            set { _instance = value; }
+        }
 
         [Category("Custome Props")]
         public String Unit
@@ -112,6 +119,14 @@ namespace QBNS
         private void pmDES_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChiTietNsFr ctFr = new ChiTietNsFr();
+            ctFr.MdiParent = this.Instance;
+            ctFr.Dock = DockStyle.Fill;
+            ctFr.Show();
         }
     }
 }

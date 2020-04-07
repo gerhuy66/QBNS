@@ -35,7 +35,10 @@ namespace QBNS
             //load combobox location
             try {
                 GetLocationList();
-            }catch(Exception exception)
+                getAgrTypeList();
+
+            }
+            catch(Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
@@ -48,8 +51,32 @@ namespace QBNS
                 setAgrChoosen();
                 //;
             }
-
-
+        }
+        private void getAgrTypeList()
+        {
+            // Open connection to the database
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                // Set up a command with the given query and associate
+                // this with the current connection.
+                cmd = new SqlCommand("select TYPE_NAME from AGR_TYPE ORDER BY TYPE_NAME", conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cbLoaiNS.Items.Add(dr[0].ToString().Trim());
+                }
+                dr.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
         private Image byteArrToImg(byte[] byteArr)
         {
@@ -79,6 +106,7 @@ namespace QBNS
                     this.tbSoLuong.Text = ds.Tables[0].Rows[0]["amount"].ToString().Trim();
                     this.tbDonGia.Text = ds.Tables[0].Rows[0]["price"].ToString().Trim();
                     this.cbDVT.Text = ds.Tables[0].Rows[0]["unit"].ToString().Trim();
+                    this.cbLoaiNS.SelectedItem = ds.Tables[0].Rows[0]["AGR_Type"].ToString().Trim();
                 }
             }
             catch(Exception err)
@@ -178,19 +206,17 @@ namespace QBNS
 
             if (this.AGR_CODE.Equals(""))
             {
-                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price) VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'','{4}','{5}','{6}')"
-                    , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),tbSoLuong.Text,cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text);
+                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price,AGR_Type) VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'','{4}','{5}','{6}','7')"
+                    , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),tbSoLuong.Text,cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
             }
             else
             {
-
-                query = String.Format("UPDATE AGRICULTURAL SET AGR_Name = '{0}',DESCRIP= '{1}',LOC_ID='{2}',amount='{4}',unit='{5}',price='{6}',IMG =@images WHERE AGR_ID = '{3}'", tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(), this.AGR_CODE,tbSoLuong.Text,cbDVT.Text.ToString().Trim(),tbDonGia.Text);
+                query = String.Format("UPDATE AGRICULTURAL SET AGR_Name = '{0}',DESCRIP= '{1}',LOC_ID='{2}',amount='{4}',unit='{5}',price='{6}',AGR_Type='{7}',IMG =@images WHERE AGR_ID = '{3}'", tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(), this.AGR_CODE,tbSoLuong.Text,cbDVT.Text.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
             }
             try
             {
                 conn = new SqlConnection(connectionString);
                 conn.Open();
-                MessageBox.Show(query);
                 cmd = new SqlCommand(query, conn);
                 try {
                     if (this.AGR_CODE.Equals("")) 

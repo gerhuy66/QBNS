@@ -52,6 +52,12 @@
     <Compile Include="AgrItem.Designer.cs">
       <DependentUpon>AgrItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChiTietNsFr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChiTietNsFr.Designer.cs">
+      <DependentUpon>ChiTietNsFr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,12 @@
     <Compile Include="ThemNongSanFr.Designer.cs">
       <DependentUpon>ThemNongSanFr.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThuongLaifr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThuongLaifr.Designer.cs">
+      <DependentUpon>ThuongLaifr.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AgrItem.resx">
       <DependentUpon>AgrItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThemNongSanFr.resx">
       <DependentUpon>ThemNongSanFr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThuongLaifr.resx">
+      <DependentUpon>ThuongLaifr.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
