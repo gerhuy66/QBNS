@@ -154,7 +154,7 @@ namespace QBNS
             {
                 SqlConnection conn2 = new SqlConnection(connectionString);
                 conn2.Open();
-                String sql = "SELECT CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code FROM AGRICULTURAL ORDER BY(code) DESC";
+                String sql = "SELECT CONVERT(INT, SUBSTRING(AGR_ID,5,10)) AS code FROM AGRICULTURAL ORDER BY(code) DESC";
                 SqlCommand cmd2 = new SqlCommand(sql, conn2);
                 SqlDataReader reader_Code = cmd2.ExecuteReader();
                 if(reader_Code.Read())
@@ -201,23 +201,23 @@ namespace QBNS
 
         }
 
-        private void btnSave_Click_2(object sender, EventArgs e)
+        private void btnSave_Click_2(object sender, EventArgs e)//click save
         {
             String query = "";
-
-            if (this.AGR_CODE.Equals(""))
+            try
+            {
+                if (this.AGR_CODE.Equals(""))
             {
                 query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price,AGR_Type) " +
                     "VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'{4}','{5}','{6}','{7}','{8}')"
-                    , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),this.shopId,tbSoLuong.Text,
+                    ,this.shopId.Trim()+calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),this.shopId,tbSoLuong.Text,
                     cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
             }
             else
             {
                 query = String.Format("UPDATE AGRICULTURAL SET AGR_Name = '{0}',DESCRIP= '{1}',LOC_ID='{2}',amount='{4}',unit='{5}',price='{6}',AGR_Type='{7}',IMG =@images WHERE AGR_ID = '{3}'", tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(), this.AGR_CODE,tbSoLuong.Text,cbDVT.Text.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
             }
-            try
-            {
+            
                 conn = new SqlConnection(connectionString);
                 conn.Open();
                 cmd = new SqlCommand(query, conn);

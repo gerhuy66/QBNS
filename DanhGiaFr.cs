@@ -80,7 +80,7 @@ namespace QBNS
             {
                 try
                 {
-                    String querry2 = String.Format("Update AGR_RATING SET RatePoint = {1} where AGR_ID = '{0}'", AgrID, rp);
+                    String querry2 = String.Format("Update AGR_RATING SET RatePoint = {1},numVote = numVote+1 where AGR_ID = '{0}'", AgrID, rp);
                     SqlCommand cmd2 = new SqlCommand(querry2, con);
                     cmd2.ExecuteNonQuery();
 

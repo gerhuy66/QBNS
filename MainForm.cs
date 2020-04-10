@@ -44,11 +44,13 @@ namespace QBNS
             nongSanItem.Name = "nongSanItem";
             toolStripMenu.Items.Add(nongSanItem);
             nongSanItem.Click += nongSanItem_Click;
+            
             //shop
             ToolStripMenuItem shopItem = new ToolStripMenuItem("Shop");
             shopItem.Name = "shopItem";
             toolStripMenu.Items.Add(shopItem);
             shopItem.Click += shopItem_Click;
+            
             //Thuong Lai
             ToolStripMenuItem thiTruongItem = new ToolStripMenuItem("Thị Trường");
             thiTruongItem.Name = "thiTruongItem";
@@ -75,10 +77,10 @@ namespace QBNS
                     nongSanItem.Visible = false;
                     shopItem.Visible = false;
                 }
-                if (LogInUser.Equals("admin"))//user is admin
-                {
-                    shopItem.Visible = false;
-                }
+            }
+            if (LogInUser.Trim().Equals("admin"))//user is admin
+            {
+                shopItem.Visible = false;
             }
 
         }
