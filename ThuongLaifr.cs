@@ -20,6 +20,7 @@ namespace QBNS
         private String nameAG = "";
         private String typeAG = "";
         private String locateAG = "";
+        private String shopName = "";
         SqlConnection conn;
         SqlCommand cmd;
         String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
@@ -34,7 +35,7 @@ namespace QBNS
             this.cbLoaiNS.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cbXuatXu.DropDownStyle = ComboBoxStyle.DropDownList;
             loadComboBoxData();
-            populateItem(nameAG, typeAG, locateAG);
+            populateItem(nameAG, typeAG, locateAG, shopName);
         }
         private Boolean isExistCbXuatXuItem(String item)
         {
@@ -112,7 +113,7 @@ namespace QBNS
             }
             return "";
         }
-        private int populateItem(String name, String type, String location)
+        private int populateItem(String name, String type, String location,String shopName)
         {
             int count = 0;
             try
@@ -121,22 +122,22 @@ namespace QBNS
                 conn.Open();
                 DataSet ds = new DataSet();
                 String sql = "";
-                if (name.Equals("") && type.Equals("") && location.Equals(""))
+                if (name.Equals("") && type.Equals("") && location.Equals("") && shopName.Equals(""))
                     sql = "SELECT * FROM AGRICULTURAL ag left join AGR_RATING ar on ag.AGR_ID = ar.AGR_ID ORDER BY ar.RatePoint DESC";
                 else
-                { 
-                    sql = String.Format("select * from AGRICULTURAL where AGR_Name like '{0}%' " +
-                        "and AGR_Type like '{1}%' and LOC_ID like '{2}%'", name, type, location);
+                {
+                    sql = String.Format("select * from AGRICULTURAL ag join SHOP sh on ag.Shop_ID = sh.Shop_ID  where ag.AGR_Name like '{0}%' " +
+                        "and ag.AGR_Type like '{1}%' and ag.LOC_ID like '{2}%' and sh.shop_Name like '{3}%'", name, type, location,shopName);
                 }
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 adapter.Fill(ds);
                 count = ds.Tables[0].Rows.Count;
                 if (count == 0)
                 {
-                    lbResultMessage.Text = String.Format("Không Tìm Thấy nông sản nào với tên: {0}   loại: {1}   xuất xứ: {2} !", name, type, location);
+                    lbResultMessage.Text = String.Format("Không Tìm Thấy nông sản nào với tên: {0}   loại: {1}   xuất xứ: {2}  tên shop: {3} !", name, type, location,shopName);
                     return count;
                 }
-                lbResultMessage.Text = String.Format("Tìm Thấy {0} nông sản với tên: {1}   loại: {2}   xuất xứ: {3}", count.ToString(), name, type, location);
+                lbResultMessage.Text = String.Format("Tìm Thấy {0} nông sản với tên: {1}   loại: {2}   xuất xứ: {3} tên shop: {4}", count.ToString(), name, type, location,shopName);
                 AgrItem[] agrList = new AgrItem[count];
                 for (int i = 0; i < count; i++)
                 {
@@ -184,7 +185,7 @@ namespace QBNS
                 this.typeAG = "";
             if (this.locateAG.Equals("Tat Ca"))
                 this.locateAG = "";
-            populateItem(this.nameAG,this.typeAG,this.locateAG);
+            populateItem(this.nameAG,this.typeAG,this.locateAG,this.shopName);
         }
 
         private void tbTenNS_TextChanged(object sender, EventArgs e)
@@ -192,7 +193,7 @@ namespace QBNS
             TextBox tb = (TextBox)sender;
             this.nameAG = tb.Text;
             flowPNMain.Controls.Clear();
-            populateItem(this.nameAG, this.typeAG, this.locateAG);
+            populateItem(this.nameAG, this.typeAG, this.locateAG,this.shopName);
         }
 
         private void cbLoaiNS_SelectedIndexChanged(object sender, EventArgs e)
@@ -205,6 +206,12 @@ namespace QBNS
         {
             ComboBox cb = (ComboBox)sender;
             this.locateAG = cb.SelectedItem.ToString().Trim();
+        }
+
+        private void tbTenShop_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb =(TextBox) sender;
+            this.shopName = tb.Text;
         }
     }
 }
