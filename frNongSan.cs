@@ -51,11 +51,9 @@ namespace QBNS
         {
             try
             {
-                String sql;
-                if (shopID.Equals("admin"))
-                    sql = "Select CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code, ag.AGR_ID,ag.AGR_Name,ag.DESCRIP,ag.LOC_ID,ag.IMG From AGRICULTURAL ag ORDER BY(Code) ASC";
-                else
-                    sql = String.Format("Select CONVERT(INT, SUBSTRING(AGR_ID,3,10)) AS code, ag.AGR_ID,ag.AGR_Name,ag.DESCRIP,ag.LOC_ID,ag.IMG From AGRICULTURAL ag  WHERE ag.Shop_ID = '{0}' ORDER BY(Code) ASC",shopID);
+                String sql = "select ag.AGR_ID as MaNS,ag.AGR_Name as TenNS,ag.IMG as HinhAnh,s.Shop_ID as MaCH,f.First_Name as fn," +
+                        "f.Last_Name as ln,f.Avatar as Ava from AGRICULTURAL ag join SHOP s on ag.Shop_ID = s.Shop_ID join FARMER f " +
+                        "on s.owner_ID = f.Farmer_ID where ag.Shop_ID like'"+shopID+"%'";
                 conn = new SqlConnection(connectionString);
                 conn.Open();
                 cmd = new SqlCommand(sql, conn);
@@ -74,23 +72,19 @@ namespace QBNS
                 dtGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightYellow;
                 dtGridView.ColumnHeadersHeight = 50;
                 //set width
-                dtGridView.Columns[0].Width = 50;
-                dtGridView.Columns[1].Width = 100;
-                dtGridView.Columns[2].Width = 150;
-                dtGridView.Columns[3].Width = 300;
-                dtGridView.Columns[4].Width = 100;
-                dtGridView.Columns[5].Width = 300;
+                dtGridView.Columns[0].Width = 120;
+                dtGridView.Columns[1].Width = 120;
+                dtGridView.Columns[2].Width = 120;
+                dtGridView.Columns[3].Width = 120;
+                dtGridView.Columns[4].Width = 120;
+                dtGridView.Columns[5].Width = 120;
+                dtGridView.Columns[6].Width = 120;
                 pnTitle.Width = 950;
                 //set heigth
 
                 dtGridView.RowTemplate.Height = 150;
-                //set column
-                dtGridView.Columns[0].HeaderText = "STT";
-                dtGridView.Columns[1].HeaderText = "Mã Nông Sản";
-                dtGridView.Columns[2].HeaderText = "Tên Nông Sản";
-                dtGridView.Columns[3].HeaderText = "Mô Tả";
-                dtGridView.Columns[4].HeaderText = "Nguồn Gốc";
-                dtGridView.Columns[5].HeaderText = "Hình Ảnh";
+               
+               
 
 
             }
@@ -135,6 +129,7 @@ namespace QBNS
         {
             ThemNongSanFr qlns = new ThemNongSanFr();
             qlns.MdiParent = this.MdiParent;
+            qlns.shopId =tbMaCH.Text.Trim();
             qlns.Show();
         }
 
@@ -168,7 +163,7 @@ namespace QBNS
         {
             foreach(DataGridViewRow row in dtGridView.SelectedRows)
             {
-                tbDelete.Text = row.Cells[1].Value.ToString();
+                tbDelete.Text = row.Cells[0].Value.ToString();
             }
         }
 

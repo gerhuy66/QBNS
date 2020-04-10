@@ -30,14 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbLoaiNS = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbDVT = new System.Windows.Forms.ComboBox();
             this.tbDonGia = new System.Windows.Forms.TextBox();
             this.tbSoLuong = new System.Windows.Forms.TextBox();
             this.cbLocation = new System.Windows.Forms.ComboBox();
             this.rtbDES = new System.Windows.Forms.RichTextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbSoLuong = new System.Windows.Forms.Label();
@@ -47,8 +48,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnBrow = new System.Windows.Forms.Button();
-            this.cbLoaiNS = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.cbDVT = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -70,9 +70,9 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Navy;
+            this.panel4.Controls.Add(this.cbDVT);
             this.panel4.Controls.Add(this.cbLoaiNS);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Controls.Add(this.cbDVT);
             this.panel4.Controls.Add(this.tbDonGia);
             this.panel4.Controls.Add(this.tbSoLuong);
             this.panel4.Controls.Add(this.cbLocation);
@@ -82,6 +82,15 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(271, 366);
             this.panel4.TabIndex = 22;
+            // 
+            // cbLoaiNS
+            // 
+            this.cbLoaiNS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoaiNS.FormattingEnabled = true;
+            this.cbLoaiNS.Location = new System.Drawing.Point(12, 262);
+            this.cbLoaiNS.Name = "cbLoaiNS";
+            this.cbLoaiNS.Size = new System.Drawing.Size(142, 21);
+            this.cbLoaiNS.TabIndex = 30;
             // 
             // btnSave
             // 
@@ -93,15 +102,6 @@
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_2);
-            // 
-            // cbDVT
-            // 
-            this.cbDVT.FormattingEnabled = true;
-            this.cbDVT.Location = new System.Drawing.Point(12, 224);
-            this.cbDVT.Name = "cbDVT";
-            this.cbDVT.Size = new System.Drawing.Size(142, 21);
-            this.cbDVT.TabIndex = 28;
-            this.cbDVT.SelectedIndexChanged += new System.EventHandler(this.cbDVT_SelectedIndexChanged);
             // 
             // tbDonGia
             // 
@@ -119,6 +119,7 @@
             // 
             // cbLocation
             // 
+            this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocation.FormattingEnabled = true;
             this.cbLocation.Location = new System.Drawing.Point(12, 104);
             this.cbLocation.Name = "cbLocation";
@@ -155,6 +156,17 @@
             this.panel3.Size = new System.Drawing.Size(132, 297);
             this.panel3.TabIndex = 21;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(2, 263);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 20);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Loại Nông Sản:";
             // 
             // label5
             // 
@@ -238,6 +250,7 @@
             this.pictureBox.Location = new System.Drawing.Point(72, 22);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(221, 250);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
@@ -255,24 +268,13 @@
             this.btnBrow.UseVisualStyleBackColor = false;
             this.btnBrow.Click += new System.EventHandler(this.btnBrow_Click_1);
             // 
-            // cbLoaiNS
+            // cbDVT
             // 
-            this.cbLoaiNS.FormattingEnabled = true;
-            this.cbLoaiNS.Location = new System.Drawing.Point(12, 262);
-            this.cbLoaiNS.Name = "cbLoaiNS";
-            this.cbLoaiNS.Size = new System.Drawing.Size(142, 21);
-            this.cbLoaiNS.TabIndex = 30;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(2, 263);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 20);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Loại Nông Sản:";
+            this.cbDVT.FormattingEnabled = true;
+            this.cbDVT.Location = new System.Drawing.Point(12, 221);
+            this.cbDVT.Name = "cbDVT";
+            this.cbDVT.Size = new System.Drawing.Size(142, 21);
+            this.cbDVT.TabIndex = 31;
             // 
             // ThemNongSanFr
             // 
@@ -309,7 +311,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ComboBox cbDVT;
         private System.Windows.Forms.TextBox tbDonGia;
         private System.Windows.Forms.TextBox tbSoLuong;
         private System.Windows.Forms.ComboBox cbLocation;
@@ -317,5 +318,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.ComboBox cbLoaiNS;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbDVT;
     }
 }

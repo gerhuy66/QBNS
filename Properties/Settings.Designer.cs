@@ -118,5 +118,16 @@ namespace QBNS.Properties {
                 this["RememberMe"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\HUYSERVER;Initial Catalog=QLNS;Persist Security Info=True;User " +
+            "ID=sa;Password=123456")]
+        public string QLNSConnectionString {
+            get {
+                return ((string)(this["QLNSConnectionString"]));
+            }
+        }
     }
 }

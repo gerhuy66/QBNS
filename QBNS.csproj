@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,17 +55,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agrDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>agrDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AgrItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AgrItem.Designer.cs">
       <DependentUpon>AgrItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="agrREPORT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>agrREPORT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ChiTietNsFr.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChiTietNsFr.Designer.cs">
       <DependentUpon>ChiTietNsFr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhGiaFr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhGiaFr.Designer.cs">
+      <DependentUpon>DanhGiaFr.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -69,6 +95,12 @@
     </Compile>
     <Compile Include="frNongSan.Designer.cs">
       <DependentUpon>frNongSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrReport.Designer.cs">
+      <DependentUpon>FrReport.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -99,11 +131,24 @@
     <EmbeddedResource Include="AgrItem.resx">
       <DependentUpon>AgrItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="agrREPORT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>agrREPORT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChiTietNsFr.resx">
+      <DependentUpon>ChiTietNsFr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhGiaFr.resx">
+      <DependentUpon>DanhGiaFr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frNongSan.resx">
       <DependentUpon>frNongSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrReport.resx">
+      <DependentUpon>FrReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -126,6 +171,17 @@
     <EmbeddedResource Include="ThuongLaifr.resx">
       <DependentUpon>ThuongLaifr.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="agrDS.xsc">
+      <DependentUpon>agrDS.xsd</DependentUpon>
+    </None>
+    <None Include="agrDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>agrDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="agrDS.xss">
+      <DependentUpon>agrDS.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

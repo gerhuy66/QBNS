@@ -104,6 +104,7 @@
             // 
             this.tbMK.Location = new System.Drawing.Point(160, 85);
             this.tbMK.Name = "tbMK";
+            this.tbMK.PasswordChar = '*';
             this.tbMK.Size = new System.Drawing.Size(168, 20);
             this.tbMK.TabIndex = 9;
             // 

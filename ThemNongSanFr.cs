@@ -17,6 +17,7 @@ namespace QBNS
 
         private String AGR_CODE="";
         private String farmerPostAGR = "";
+        public String shopId;
         SqlConnection conn;
         SqlCommand cmd;
         String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
@@ -43,10 +44,10 @@ namespace QBNS
                 MessageBox.Show(exception.Message);
             }
             //load cb Unit
-            this.cbDVT.Items.Add("VNĐ / Kg");
-            this.cbDVT.Items.Add("VNĐ / Tấn");
-            this.cbDVT.Items.Add("USD / KG");
-            this.cbDVT.Items.Add("USD / Tấn");
+            cbDVT.Items.Add("VNĐ / Kg".Trim());
+            cbDVT.Items.Add("VNĐ / Tan".Trim());
+            cbDVT.Items.Add("USD / KG".Trim());
+            cbDVT.Items.Add("USD / Tan".Trim());
             if (!AGR_CODE.Equals("")){
                 setAgrChoosen();
                 //;
@@ -146,7 +147,7 @@ namespace QBNS
             }
 
         }
-        private string calculateCode()
+        public string calculateCode()
         {
             String strRs="NS0";
             try
@@ -206,8 +207,10 @@ namespace QBNS
 
             if (this.AGR_CODE.Equals(""))
             {
-                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price,AGR_Type) VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'','{4}','{5}','{6}','7')"
-                    , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),tbSoLuong.Text,cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
+                query = String.Format("Insert into AGRICULTURAL(AGR_ID,AGR_Name,DESCRIP,LOC_ID,IMG,Shop_ID,amount,unit,price,AGR_Type) " +
+                    "VALUES('{0}','{1}','{2}','{3}'," + "@images" +",'{4}','{5}','{6}','{7}','{8}')"
+                    , calculateCode(), tbName.Text, rtbDES.Text, cbLocation.SelectedItem.ToString(),this.shopId,tbSoLuong.Text,
+                    cbDVT.SelectedItem.ToString().Trim(),tbDonGia.Text,cbLoaiNS.SelectedItem.ToString());
             }
             else
             {

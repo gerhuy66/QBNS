@@ -13,7 +13,8 @@ namespace QBNS
 {
     public partial class MainForm : Form
     {
-   
+        String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+            Properties.Settings.Default.ServerName, Properties.Settings.Default.DBname, Properties.Settings.Default.userName, Properties.Settings.Default.passWord);
         public MainForm()
         {
             InitializeComponent();
@@ -33,9 +34,11 @@ namespace QBNS
             //this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.None;
 
-           // this.WindowState = FormWindowState.Maximized;
-           
+            // this.WindowState = FormWindowState.Maximized;
+
             //add item to tool strip menu
+            this.IsMdiContainer = true;
+            this.WindowState = FormWindowState.Maximized;
             //nong san
             ToolStripMenuItem nongSanItem = new ToolStripMenuItem("Nông Sản");
             nongSanItem.Name = "nongSanItem";
@@ -51,10 +54,65 @@ namespace QBNS
             thiTruongItem.Name = "thiTruongItem";
             toolStripMenu.Items.Add(thiTruongItem);
             thiTruongItem.Click += thiTruongItem_Click;
+
             //exit
             ToolStripMenuItem exit = new ToolStripMenuItem("Thoát");
             toolStripMenu.Items.Add(exit);
             exit.Click += Exit_Click;
+            //label
+            ToolStripLabel userLabel = new ToolStripLabel("User: " + LogInUser);
+            toolStripMenu.Items.Add(userLabel);
+            userLabel.BackColor = Color.Blue;
+
+            if (!getAccountType(LogInUser).Equals(""))
+            {
+                if (getAccountType(LogInUser).Substring(0, 1).Equals("F"))//user is farmer
+                {
+                    nongSanItem.Visible = false;
+                }
+                if (getAccountType(LogInUser).Substring(0, 2).Equals("tr"))//user is trader
+                {
+                    nongSanItem.Visible = false;
+                    shopItem.Visible = false;
+                }
+                if (LogInUser.Equals("admin"))//user is admin
+                {
+                    shopItem.Visible = false;
+                }
+            }
+
+        }
+
+        public String getAccountType(String username)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            try
+            {
+                String sql = "select Farmer_ID,Trader_ID from ACCOUNT where username ='" + username + "'";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    String fID = reader.GetValue(0).ToString();
+                    String tID = reader.GetValue(1).ToString();
+                    if (fID.Equals(""))// user is trader
+                    {
+                        return tID;
+                    }
+                    else
+                        return fID;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + "here");
+            }
+            finally
+            {
+                con.Close();
+            }
+            return "";
         }
         private void thiTruongItem_Click(object sender, EventArgs e)//click thi truong
         {
@@ -113,13 +171,13 @@ namespace QBNS
                 shopfr.Show();
             }
         }
-        private String gerShopID(String username)
+        private String gerShopID(String farmerID)
         {
             String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
             Properties.Settings.Default.ServerName, Properties.Settings.Default.DBname, Properties.Settings.Default.userName, Properties.Settings.Default.passWord);
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            String sql = "SELECT Shop_ID FROM SHOP WHERE owner_ID = '" + username.Trim() + "'";
+            String sql = "SELECT Shop_ID FROM SHOP WHERE owner_ID = '" + farmerID.Trim() + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
 
             try
@@ -144,15 +202,15 @@ namespace QBNS
             }
             return "";
         }
-        private String getFarmerID(String username)
+        public String getFarmerID(String username)
         {
             String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
             Properties.Settings.Default.ServerName, Properties.Settings.Default.DBname, Properties.Settings.Default.userName, Properties.Settings.Default.passWord);
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            String sql = "SELECT Farmer_ID FROM ACCOUNT WHERE username = '"+ username.Trim() + "'";
+            String sql = "SELECT Farmer_ID FROM ACCOUNT WHERE username = '" + username.Trim() + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
-           
+
             try
             {
 
@@ -162,9 +220,9 @@ namespace QBNS
                     return dr.GetString(0);
                 }
                 dr.Close();
-              
+
             }
-            catch(Exception excep)
+            catch (Exception excep)
             {
                 MessageBox.Show(excep.Message);
             }
@@ -178,17 +236,18 @@ namespace QBNS
 
         private void nongSanItem_Click(object sender, EventArgs e)//CLICK NONG SAN
         {
-            Boolean isopen=false;
-            foreach(Form f in Application.OpenForms)
+            Boolean isopen = false;
+            foreach (Form f in Application.OpenForms)
             {
-                if(f.Name == "frnongsan")
+                if (f.Name == "frnongsan")
                 {
                     isopen = true;
                     f.BringToFront();
                     break;
                 }
             }
-            if (!isopen) { 
+            if (!isopen)
+            {
                 frNongSan frnongsan = new frNongSan();
                 frnongsan.Name = "frnongsan";
                 frnongsan.MdiParent = this;
@@ -196,7 +255,10 @@ namespace QBNS
                 //frnongsan.StartPosition = FormStartPosition.CenterScreen;
                 frnongsan.FormBorderStyle = FormBorderStyle.None;
                 frnongsan.ControlBox = false;
-                frnongsan.DefaultShopID = gerShopID(getFarmerID(LogInUser.Trim()));
+                if (!LogInUser.Equals("admin"))
+                    frnongsan.DefaultShopID = gerShopID(getFarmerID(LogInUser.Trim()));
+                else
+                    frnongsan.DefaultShopID = "admin";
                 frnongsan.Show();
             }
         }
@@ -208,12 +270,12 @@ namespace QBNS
             }
         }
 
-      
+
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-            
+
         }
 
         private void toolStripLabel1_MouseHover(object sender, EventArgs e)
@@ -230,6 +292,10 @@ namespace QBNS
         private void toolStripMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
         }
     }
 }

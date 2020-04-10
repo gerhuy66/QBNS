@@ -35,24 +35,18 @@
             // 
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
-            this.toolStripMenu.Size = new System.Drawing.Size(1003, 29);
-            this.toolStripMenu.TabIndex = 6;
+            this.toolStripMenu.Size = new System.Drawing.Size(800, 25);
+            this.toolStripMenu.TabIndex = 0;
             this.toolStripMenu.Text = "toolStrip1";
-            this.toolStripMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMenu_ItemClicked);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 423);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStripMenu);
-            this.IsMdiContainer = true;
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

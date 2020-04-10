@@ -40,7 +40,6 @@
             this.btn_Refresh = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbDelete = new System.Windows.Forms.TextBox();
-            this.btnAddAGR = new System.Windows.Forms.Button();
             this.btnDelAGR = new System.Windows.Forms.Button();
             this.btnUpDate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridView)).BeginInit();
@@ -67,6 +66,7 @@
             // 
             this.dtGridView.AllowUserToAddRows = false;
             this.dtGridView.AllowUserToDeleteRows = false;
+            this.dtGridView.BackgroundColor = System.Drawing.Color.White;
             this.dtGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dtGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -126,7 +126,6 @@
             this.panel2.Controls.Add(this.btn_Refresh);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.tbDelete);
-            this.panel2.Controls.Add(this.btnAddAGR);
             this.panel2.Controls.Add(this.btnDelAGR);
             this.panel2.Controls.Add(this.btnUpDate);
             this.panel2.Location = new System.Drawing.Point(974, 91);
@@ -137,7 +136,7 @@
             // btn_Refresh
             // 
             this.btn_Refresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btn_Refresh.Location = new System.Drawing.Point(8, 299);
+            this.btn_Refresh.Location = new System.Drawing.Point(8, 315);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_Refresh.TabIndex = 5;
@@ -164,23 +163,12 @@
             this.tbDelete.TabIndex = 3;
             this.tbDelete.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // btnAddAGR
-            // 
-            this.btnAddAGR.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddAGR.Location = new System.Drawing.Point(109, 101);
-            this.btnAddAGR.Name = "btnAddAGR";
-            this.btnAddAGR.Size = new System.Drawing.Size(204, 58);
-            this.btnAddAGR.TabIndex = 2;
-            this.btnAddAGR.Text = "Thêm";
-            this.btnAddAGR.UseVisualStyleBackColor = false;
-            this.btnAddAGR.Click += new System.EventHandler(this.btnAddAGR_Click);
-            // 
             // btnDelAGR
             // 
             this.btnDelAGR.BackColor = System.Drawing.Color.Yellow;
-            this.btnDelAGR.Location = new System.Drawing.Point(109, 165);
+            this.btnDelAGR.Location = new System.Drawing.Point(44, 204);
             this.btnDelAGR.Name = "btnDelAGR";
-            this.btnDelAGR.Size = new System.Drawing.Size(204, 55);
+            this.btnDelAGR.Size = new System.Drawing.Size(134, 41);
             this.btnDelAGR.TabIndex = 1;
             this.btnDelAGR.Text = "Xóa";
             this.btnDelAGR.UseVisualStyleBackColor = false;
@@ -188,9 +176,9 @@
             // 
             // btnUpDate
             // 
-            this.btnUpDate.Location = new System.Drawing.Point(109, 226);
+            this.btnUpDate.Location = new System.Drawing.Point(195, 204);
             this.btnUpDate.Name = "btnUpDate";
-            this.btnUpDate.Size = new System.Drawing.Size(204, 51);
+            this.btnUpDate.Size = new System.Drawing.Size(134, 42);
             this.btnUpDate.TabIndex = 0;
             this.btnUpDate.Text = "Sửa";
             this.btnUpDate.UseVisualStyleBackColor = true;
@@ -229,7 +217,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox tbDelete;
-        private System.Windows.Forms.Button btnAddAGR;
         private System.Windows.Forms.Button btnDelAGR;
         private System.Windows.Forms.Button btnUpDate;
         private System.Windows.Forms.Label label2;

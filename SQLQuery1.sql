@@ -1,0 +1,1 @@
+﻿select Farmer_ID,Trader_ID from ACCOUNT where username = 'gerhuy66'

@@ -15,7 +15,6 @@ namespace QBNS
     {
         private String owner_ID="";
         private String shop_ID = "";
-
         SqlConnection conn;
         SqlCommand cmd;
         String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
@@ -101,6 +100,12 @@ namespace QBNS
             loadShopInfo();
             
         }
+        private String convertUTF(String str)
+        {
+            byte[] bytes = Encoding.Default.GetBytes(str);
+            String rsstr = Encoding.UTF8.GetString(bytes);
+            return rsstr;
+        }
         private void populateItem()
         {
             try
@@ -112,16 +117,18 @@ namespace QBNS
                 adapter.Fill(ds);
                 int count = ds.Tables[0].Rows.Count;
                 AgrItem[] agrList = new AgrItem[count];
+
                 for (int i = 0; i < count; i++)
                 {
                     agrList[i] = new AgrItem();
                     agrList[i].Title = ds.Tables[0].Rows[i]["AGR_Name"].ToString().Trim();
                     agrList[i].Message = ds.Tables[0].Rows[i]["DESCRIP"].ToString().Trim();
-                    agrList[i].agrID = ds.Tables[0].Rows[i]["AGR_ID"].ToString().Trim();
+                    agrList[i].AgrID = ds.Tables[0].Rows[i]["AGR_ID"].ToString().Trim();
                     agrList[i].Amount = ds.Tables[0].Rows[i]["amount"].ToString().Trim();
                     agrList[i].Price = ds.Tables[0].Rows[i]["price"].ToString().Trim();
                     agrList[i].Unit = ds.Tables[0].Rows[i]["unit"].ToString().Trim();
                     agrList[i].Instance = this.MdiParent;
+                    agrList[i].FarmerID = this.owner_ID;
                     Byte[] data = new Byte[0];
                     data = (byte[])ds.Tables[0].Rows[i]["IMG"];
                     MemoryStream ms = new MemoryStream(data);
@@ -196,13 +203,19 @@ namespace QBNS
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             String query = "";
-                query = String.Format("UPDATE SHOP SET owner_ID = '{0}',shop_phone = '{1}',shop_Name = '{2}',shop_Address ='{3}' WHERE Shop_ID='{4}'",owner_ID,tbSDT.Text,tbTenShop.Text,tbDiaChi.Text,shop_ID);
+                query = String.Format("UPDATE SHOP SET shop_phone = '{0}',shop_Name = '{1}',shop_Address ='{2}' WHERE Shop_ID='{3}'",tbSDT.Text,tbTenShop.Text,tbDiaChi.Text,shop_ID);
             try
             {
                 conn = new SqlConnection(connectionString);
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
+                String[] tokens = tbTenChuCH.Text.Split(' ');
+                
+                query = String.Format("UPDATE FARMER SET First_Name = '{0}',Last_Name = '{1}' WHERE Farmer_ID= '{2}'", tokens[0], tokens[1],  owner_ID);
+                cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                
                 MessageBox.Show("Chỉnh Sửa Thông Tin Thành Công !");
             }
             catch (Exception exp)
@@ -215,6 +228,23 @@ namespace QBNS
                 conn.Close();
 
             }
+        }
+
+        private void btnAddAGR_Click(object sender, EventArgs e)
+        {
+            ThemNongSanFr themNongSanFr = new ThemNongSanFr();
+            themNongSanFr.MdiParent = this.MdiParent;
+            themNongSanFr.shopId = this.shop_ID;
+            themNongSanFr.Show();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            FrReport frrp = new FrReport();
+            frrp.MdiParent = this.MdiParent;
+            frrp.StartPosition = FormStartPosition.CenterParent;
+            frrp.shop_ID = this.shop_ID;
+            frrp.Show();
         }
     }
 }

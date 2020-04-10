@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbXuatXu = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbLoaiNS = new System.Windows.Forms.ComboBox();
+            this.tbTenNS = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,10 +77,10 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel3.Controls.Add(this.comboBox2);
+            this.panel3.Controls.Add(this.cbXuatXu);
             this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.cbLoaiNS);
+            this.panel3.Controls.Add(this.tbTenNS);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
@@ -89,13 +89,14 @@
             this.panel3.Size = new System.Drawing.Size(296, 280);
             this.panel3.TabIndex = 0;
             // 
-            // comboBox2
+            // cbXuatXu
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(145, 146);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 11;
+            this.cbXuatXu.FormattingEnabled = true;
+            this.cbXuatXu.Location = new System.Drawing.Point(145, 146);
+            this.cbXuatXu.Name = "cbXuatXu";
+            this.cbXuatXu.Size = new System.Drawing.Size(121, 21);
+            this.cbXuatXu.TabIndex = 11;
+            this.cbXuatXu.SelectedIndexChanged += new System.EventHandler(this.cbXuatXu_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -107,20 +108,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // cbLoaiNS
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(145, 102);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cbLoaiNS.FormattingEnabled = true;
+            this.cbLoaiNS.Location = new System.Drawing.Point(145, 102);
+            this.cbLoaiNS.Name = "cbLoaiNS";
+            this.cbLoaiNS.Size = new System.Drawing.Size(121, 21);
+            this.cbLoaiNS.TabIndex = 9;
+            this.cbLoaiNS.SelectedIndexChanged += new System.EventHandler(this.cbLoaiNS_SelectedIndexChanged);
             // 
-            // textBox1
+            // tbTenNS
             // 
-            this.textBox1.Location = new System.Drawing.Point(145, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 8;
+            this.tbTenNS.Location = new System.Drawing.Point(145, 56);
+            this.tbTenNS.Name = "tbTenNS";
+            this.tbTenNS.Size = new System.Drawing.Size(100, 20);
+            this.tbTenNS.TabIndex = 8;
+            this.tbTenNS.TextChanged += new System.EventHandler(this.tbTenNS_TextChanged);
             // 
             // label6
             // 
@@ -158,7 +161,7 @@
             this.flowPNMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.flowPNMain.Location = new System.Drawing.Point(358, 108);
             this.flowPNMain.Name = "flowPNMain";
-            this.flowPNMain.Size = new System.Drawing.Size(792, 405);
+            this.flowPNMain.Size = new System.Drawing.Size(991, 503);
             this.flowPNMain.TabIndex = 4;
             // 
             // lbResultMessage
@@ -175,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1350, 651);
             this.Controls.Add(this.lbResultMessage);
             this.Controls.Add(this.flowPNMain);
             this.Controls.Add(this.panel1);
@@ -199,10 +202,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbXuatXu;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbLoaiNS;
+        private System.Windows.Forms.TextBox tbTenNS;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
